@@ -1,0 +1,208 @@
+/* var for the entire site */
+:root{
+    --color-primary: #FF7b54;
+    --color-text-on-primary: #FFF;
+    --color-text-on-secondary: #000;
+    --color-button-border: var(--color-text-on-primary);
+    
+    /* primary button colors */
+    --color-button-primary-bg: var(--color-text-on-primary);
+    --color-button-primary-color: var(--color-primary);
+    
+    /* secondary button colors */
+    --color-button-secondary-bg: var(--color-primary);
+    --color-button-secondary-color: var(--color-text-on-primary);
+
+    --font-regular: Inter;
+}
+
+/* setting default font familes - each one should be separet*/
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter_24pt-Regular.ttf);
+}
+
+/* making the default body style of color, background and font-family */
+body{
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+    font-family: var(--font-regular);
+}
+
+/* no margin for any <p> */
+h2,
+p{
+margin: 0;
+}
+
+/* works because the parent which is the body tag has text-decoration of none and color of var(white)*/
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/* default behaviour for our head since it is shard */
+.header{
+    display: grid;
+    grid-template-columns: 1fr 3fr 34px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "logo nav shopping-cart";
+    align-items: center;
+    padding: 0 60px;
+}
+/* to make the nav element which is the <a> and the <ul> next to each other but also having thr ability to vchange the width later if we want*/
+.nav{
+    display: inline-block;
+    /* justify-self ===  margin-left: auto;*/
+    justify-self: end;
+    grid-area: nav;
+}
+/* making the ul elements next to each other and changing the list style */
+.nav__list{
+    list-style: none;
+    display: flex;
+}
+/* style the element of the list */
+.nav__list-item{
+    /* margin-right: 36px; */
+    /* making the margin language friend as margin-right is good for english but bad for arabic */
+    margin-inline-end: 36px;
+    font-size: 18px;
+}
+
+/* giving the grid areas to the elements */
+.header__link{
+    grid-area: logo;
+    font-size: 40px;
+    font-weight: bold;
+}
+/* we don't need to do add it as its already fit itself in it 
+header img{
+    grid-area: shopping-cart;
+} */
+
+/* button styling */
+.button{
+    font-size: 32px;
+    padding: 0 64px;
+    height: 100px;
+    border: 4px solid var(--color-button-border);
+    cursor: pointer;
+    /*  */
+    transition: outline 0.2s linear;
+}
+/* adding hover and focus effect to the button */
+.button:hover,
+.button:focus{
+    outline: 2px solid var(--color-text-on-primary);
+}
+/* primary button */
+.primary--button{
+    color: var(--color-button-primary-color);
+    background-color: var(--color-button-primary-bg);
+}
+/* secondary button */
+.secondary--button{
+    background-color: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-color);
+}
+
+/* main class which is the container of the body */
+.main{
+    padding: 150px;
+}
+
+/* making sure that the menu and the close svg will be removed from the DOM*/
+.menu,
+.close{
+    display: none;
+    /* grid-area: menu; */
+}
+
+/* responsive desgin */
+@media (max-width: 1220px){
+    .button{
+        font-size: 24px;
+        pad: 0 32px;
+        height: 80px;
+    }
+
+    .button img{
+        width: 25px;
+    }
+}
+
+@media (max-width: 900px){
+    .main__button-container{
+        margin-top: 32px;
+        flex-wrap: wrap;
+    }
+    .button{
+        padding: 0;
+        font-size: 18px;
+        height: 60px;
+        width: 170px;
+    }
+
+    .button img{
+        width: 18px;
+    }
+
+    /* handling the burger menu */
+    .nav{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--color-primary);
+        top: 60px;
+        left: -100%;
+        padding-top: 60px;
+        
+        /* its better performance to animate from left to right than to animate width */
+        transition: left 0.2s linear;
+    }
+
+    .nav--visible{
+        left: 0;
+    }
+
+    .nav__list{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 80%;
+    }
+
+    .nav__list-item{
+        font-size:40px;
+        font-weight: bold;
+    }
+
+    .header{
+        grid-template-columns: 34px 1fr 34px;
+        grid-template-areas: "menu logo shopping-cart"; 
+        justify-items: center;
+    }
+
+    .menu{
+        display: block;
+    }
+
+    .menu,
+    .close{
+        grid-area: menu;
+        cursor: pointer;
+    }
+
+    .menu--hide{
+        display: none;
+    }
+
+    .close--show{
+        display: block;
+    }
+
+    .body--no--scroll{
+        overflow: hidden;
+    }
+}

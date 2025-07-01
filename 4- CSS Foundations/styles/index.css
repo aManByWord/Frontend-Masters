@@ -1,0 +1,60 @@
+@import url(./base.css);  
+
+/* the big text we see */
+.main__heading{
+    font-size: 128px;
+    font-weight: bold;
+}
+/* the small date we see under the big one */
+.main__sub-heading{
+    font-size: 40px;
+ }
+
+ /* styling the button spacing */
+ .main__button-container{
+    margin-top: 100px;
+    display: flex;
+}
+/* we wanted space between the two button at the same time we did not want the space to be added to the last button(secondary) as it is the last one*/
+.button:not(button:last-of-type){
+    margin-inline-end: 20px;
+}
+
+/* making the contain of the primary button in the right spacing */
+.primary--button{
+    font-weight: bold;
+    /* using flex wouldn't work because the text center in the captial letters center so the arrow next to the small letter will not apear to be centered 
+    display: flex;
+    align-items: center; */
+}
+
+/* centering the icon with the text in the primary button */
+.button__icon{
+    vertical-align: middle;
+}
+
+/* coloring the svgs */
+.menu path,
+.close path{
+    fill: var(--color-text-on-primary);
+}
+
+/* making the page responsive with smaller screens */
+@media (max-width: 1220px) {
+    .main{
+        padding-bottom: 50px;
+    }
+    .main__heading{
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 900px) {
+    .main__heading{
+        font-size: 60px;
+    }
+
+    .main__sub-heading{
+        font-size: 24px;
+    }
+}
