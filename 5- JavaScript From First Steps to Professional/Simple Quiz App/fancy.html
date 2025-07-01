@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Quiz.js</title>
+    <style>
+        body {
+            margin: 1rem auto;
+            padding: 3rem;
+            font-family: sans-serif;
+        }
+
+        header {
+            width: 50%;
+            margin: 1em auto;
+        }
+
+        main {
+            min-width: 25rem;
+            max-width: 50%;
+            margin: 0px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #score {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        #statement {
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            box-shadow: 5px 5px 5px gray;
+            padding: 1rem;
+            font-size: x-large;
+            text-align: center;
+            margin: 1rem 0px;
+            min-height: 2em;
+        }
+
+        #explanation {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 0.5rem;
+            font-size: medium;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: lightgrey;
+        }
+
+        .correct {
+            background-color: lightgreen;
+        }
+
+        .incorrect {
+            background-color: lightpink;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Quiz.js</h1>
+        <p>Do you know JS? Find out!</p>
+        <p id="score">Your Score: 0 / 0</p>
+    </header>
+
+    <main>
+        <div id="statement">
+        </div>
+
+        <div id="options">
+            <button class="btn" name="true" value="true">true</button>
+            <button class="btn" name="false" value="false">false</button>
+        </div>
+        <button id="next" name="next" value="next" disabled>Get Next Question</button>
+
+
+        <div id="explanation">
+        </div>
+
+    </main>
+</body>
+
+<script type="text/javascript">
+    // TODO 1: Declare & assign variables pointing to the corresponding element(s)
+    // statement should be the "statement" div
+    // optionButtons should be all the elements within the "options" div
+    // explanation should be the "explanation" div
+    const score = document.querySelector(`#score`);
+    const statement = document.querySelector(`#statement`);
+    const explanation = document.querySelector(`#explanation`);
+    const optionButtons = document.querySelector(`#options`).children;
+    const nextButton = document.querySelector(`#next`);
+    let counter = -1;
+    let scoreCounter = 0;
+    // the facts var to get new questions
+    const facts = [
+        {
+            "statement": "JavaScript was invented in 1995",
+            "answer": "true",
+            "explanation": "Brendan Eich created JS at Netscape in 1995. The initial version of the language was written in just 10 days."
+        },
+        {
+            "statement": "Strings in JS are editable values",
+            "answer": "false",
+            "explanation": "In JavaScript strings are immutable values, meaning they cannot be edited; however, they can replaced with new, different strings."
+        },
+        {
+            "statement": "1 + 1 === 2",
+            "answer": "true",
+            "explanation": "The plus operator gives the sum of two numbers."
+        },
+        {
+            "statement": "'1' + '1' === '2'",
+            "answer": "false",
+            "explanation": "The plus operator concatenates (joins together) strings, so '1' + '1' === '11'."
+        },
+        {
+            "statement": "typeof ['J', 'S'] === 'array'",
+            "answer": "false",
+            "explanation": "Arrays have the type 'object'. In JS, everything is either a primitive data type (e.g. 'string', 'number') or an object. Arrays are a kind of object with some special properties.  "
+        }
+    ];
+
+    // prints the first fact where counter is 0
+    printFact();
+
+    // add eventListner to get the next question button then disable it
+    nextButton.addEventListener(`click`, function isClicked() {
+        if (counter === facts.length - 1) {
+            explanation.textContent = "You Reached The End, Good person!";
+            disable(nextButton);
+            nextButton.classList.remove('btn');
+            return;
+        }
+
+        explanation.textContent = "";
+        printFact();
+        disable(nextButton);
+        nextButton.classList.remove('btn');
+
+        for (const button of optionButtons) {
+            enable(button);
+            button.classList.add('btn');
+            button.classList.remove('correct');
+            button.classList.remove('incorrect');
+        }
+    });
+
+    for (const button of optionButtons) {
+        button.addEventListener(`click`, function isClicked(event) {
+            isCorrect(button.textContent, facts[counter].answer) ? button.classList.add('correct') : button.classList.add('incorrect');
+            explanation.textContent = facts[counter].explanation;
+            for (const button of optionButtons) {
+                disable(button);
+                button.classList.remove('btn');
+            }
+            enable(nextButton);
+            nextButton.classList.add('btn');
+        });
+    }
+
+    // functions Declarations:
+    // get next question
+    function printFact() {
+        if (counter <= facts.length) {
+            counter++;
+            statement.textContent = facts[counter].statement;
+        }
+        else { }
+    }
+
+    // two functions one to disable and the other to enable a button
+    const disable = (button) => button.disabled = true;
+    const enable = (button) => button.disabled = false;
+
+    // a function to check if the user guess is
+    function isCorrect(guess, answer) {
+        if (guess === answer) {
+            scoreCounter++;
+            score.textContent = `Your Score: ${scoreCounter} / ${counter + 1}`;
+            return true;
+        } else {
+            score.textContent = `Your Score: ${scoreCounter} / ${counter + 1}`;
+            return false;
+        }
+    }
+</script>
+
+</html>
