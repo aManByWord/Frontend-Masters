@@ -25,7 +25,6 @@ export default function App() {
     <div className="app">
       <h1>Game {game}</h1>
       <select
-        disabled={isPending}
         onChange={(e) => {
           getNewScore(e.target.value);
         }}
