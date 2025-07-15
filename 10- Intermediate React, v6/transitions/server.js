@@ -1,5 +1,4 @@
 import http from "node:http";
-
 import scores from "./teams.js";
 
 // times in milliseconds
@@ -26,8 +25,7 @@ function rerenderScores() {
   console.clear();
   scores.forEach((score, index) => {
     console.log(
-      `Game ${index + 1}:\t\t ${score.homeName}: ${score.home} ${
-        score.homeName.length < 10 ? "\t" : ""
+      `Game ${index + 1}:\t\t ${score.homeName}: ${score.home} ${score.homeName.length < 10 ? "\t" : ""
       } \t – \t ${score.awayName}: ${score.away}`
     );
   });

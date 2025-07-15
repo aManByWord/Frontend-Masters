@@ -56,5 +56,4 @@ const teams = [
     away: 0,
   },
 ];
-
 export default teams;
