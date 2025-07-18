@@ -1,0 +1,11 @@
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf';
+  import ComponentName from './component-name.svelte';
+
+  const { Story } = defineMeta({
+    title: 'ComponentName',
+    component: ComponentName,
+  });
+</script>
+
+<Story name="Default" />
