@@ -1,5 +1,5 @@
 <script>
-  const { label = 'Button', ...props } = $props();
+const { label = 'Button', ...props } = $props();
 </script>
 
 <button {...props}>{label}</button>

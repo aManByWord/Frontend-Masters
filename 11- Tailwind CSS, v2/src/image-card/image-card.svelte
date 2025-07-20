@@ -1,5 +1,5 @@
 <script>
-  const { name = 'Product Name', description = 'Product description goes here.', price } = $props();
+const { name = 'Product Name', description = 'Product description goes here.', price } = $props();
 </script>
 
 <div>

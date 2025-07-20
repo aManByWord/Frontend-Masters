@@ -1,8 +1,8 @@
 <script>
-  import PrimaryButton from '../button/primary-button.svelte';
-  import Input from '../input/input.svelte';
+import PrimaryButton from '../button/primary-button.svelte';
+import Input from '../input/input.svelte';
 
-  const { ...props } = $props();
+const { ...props } = $props();
 </script>
 
 <form {...props}>

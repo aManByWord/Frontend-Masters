@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Card from '../card/card.svelte';
+import Card from '../card/card.svelte';
 </script>
 
-<div>
+<div class="space-y-3.5 divide-y-4 divide-green-300">
   <Card title="Card Title" description="This is a description of the card." />
   <Card title="Another Card" description="This is another description of a different card." />
   <Card title="Third Card" description="This is a description of the third card." />

@@ -1,5 +1,5 @@
 <script>
-  const { title, details } = $props();
+const { title, details } = $props();
 </script>
 
 <details>

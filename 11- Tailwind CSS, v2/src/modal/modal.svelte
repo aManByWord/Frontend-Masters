@@ -1,10 +1,10 @@
 <script>
-  const { title = 'Modal Title', content = 'Modal content goes here.', ...props } = $props();
+const { title = 'Modal Title', content = 'Modal content goes here.', ...props } = $props();
 
-  let dialog;
+let dialog;
 
-  const openModal = () => dialog.showModal();
-  const closeModal = () => dialog.close();
+const openModal = () => dialog.showModal();
+const closeModal = () => dialog.close();
 </script>
 
 <div>

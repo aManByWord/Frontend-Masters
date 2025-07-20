@@ -1,6 +1,6 @@
 <script>
-  import Checkbox from './checkbox.svelte';
-  const { items } = $props();
+import Checkbox from './checkbox.svelte';
+const { items } = $props();
 </script>
 
 <div>
