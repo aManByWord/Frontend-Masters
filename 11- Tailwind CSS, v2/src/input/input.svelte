@@ -4,10 +4,14 @@ const descriptionId = description ? `${id}-description` : undefined;
 const errorId = error ? `${id}-error` : undefined;
 </script>
 
-<div class="w-fit space-y-1">
-  <label class="text-lg font-medium text-slate-500" for={id}>{label}: </label>
+<div class="group w-fit space-y-1 p-4 ring-indigo-400 focus-within:ring-8">
+  <label
+    class="text-lg font-medium text-slate-500 after:text-red-600 group-has-[input:required]:after:content-['*']"
+    for={id}
+    >{label}:
+  </label>
   <input
-    class="rounded p-1 outline-1 outline-slate-500"
+    class="group-has- rounded p-1 ring-amber-300 outline-1 outline-slate-500 user-invalid:outline-red-600 focus-within:ring-8"
     id={id}
     aria-describedby={descriptionId}
     aria-invalid={!!error}
@@ -21,5 +25,27 @@ const errorId = error ? `${id}-error` : undefined;
     <p id={errorId}>{error}</p>
   {/if}
 </div>
-<button class="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3">...</button>
-<button class="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3">...</button>
+
+<!-- <div class="group mt-8 space-y-1">
+  <label
+    class="block font-medium text-slate-500 after:ml-2 after:block after:h-2 after:w-2 after:text-red-600 group-has-[input:required]:after:content-['Required']"
+    for={id}
+    >{label}:
+  </label>
+  <input
+    class="block w-full rounded bg-white px-2 py-1 placeholder-slate-500 outline outline-slate-600 placeholder:font-light invalid:outline-2
+    invalid:outline-red-600
+    focus:outline-2 focus:outline-blue-600"
+    id={id}
+    aria-describedby={descriptionId}
+    aria-invalid={!!error}
+    aria-errormessage={errorId}
+    {...props}
+  />
+  {#if description}
+    <p id={descriptionId}>{description}</p>
+  {/if}
+  {#if error}
+    <p id={errorId}>{error}</p>
+  {/if}
+</div> -->
