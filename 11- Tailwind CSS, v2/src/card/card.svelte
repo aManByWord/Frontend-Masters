@@ -6,3 +6,4 @@ const { title = 'Card Title', description = '' } = $props();
   <h2 class="font-mono text-2xl font-bold dark:text-white">{title}</h2>
   <p class="dark:text-white">{description}</p>
 </div>
+69
